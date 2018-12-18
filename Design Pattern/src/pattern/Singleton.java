@@ -7,8 +7,8 @@ package pattern;
  *
  */
 public final class Singleton {
-	public static class SingletonHodler {
-		private volatile static Singleton INSTANCE = new Singleton();
+	private static class SingletonHodler {
+		private static Singleton INSTANCE = new Singleton();
 		private SingletonHodler() {}
 	}
 
@@ -17,9 +17,5 @@ public final class Singleton {
 
 	public static Singleton getInstance(){
 		return SingletonHodler.INSTANCE;
-	}
-
-	public void callMe() {
-		System.out.println();
 	}
 }
