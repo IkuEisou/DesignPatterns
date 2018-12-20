@@ -100,29 +100,41 @@ public class Client {
 		System.out.println((end - start) + "ms");
 	}
 
-	private static void _execute(Callable<Object> task, int tnum) throws InterruptedException, ExecutionException {
+	private static void _execute(Callable<Object> task, int tnum) {
 		ArrayList<Future<Object>> insList = new ArrayList<Future<Object>>();
 		ArrayList<Object> insNameList = new ArrayList<Object>();
 		ExecutorService executor = Executors.newFixedThreadPool(tnum);
+		try {
+			for (int i = 0; i < tnum; i++) {
+				Future<Object> f = executor.submit(task);
+				insList.add(f);
+			}
 
-		for (int i = 0; i < tnum; i++) {
-			Future<Object> f = executor.submit(task);
-			insList.add(f);
+			for (Future<Object> f : insList) {
+				Object s;
+
+				s = ((Future<Object>) f).get();
+
+				insNameList.add(s);
+				System.out.println(s);
+			}
+
+			System.out.print("Is Singleton:");
+			boolean IsSingleton = insNameList.stream().collect(Collectors.groupingBy(x -> x, Collectors.counting()))
+					.get(insNameList.get(0)) == tnum;
+			System.out.println(IsSingleton);
+			insNameList.clear();
+			insList.clear();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		} finally {
+			executor.shutdown();
+			try {
+				executor.awaitTermination(5, TimeUnit.SECONDS);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				executor.shutdownNow();
+			}
 		}
-
-		for (Future<Object> f : insList) {
-			Object s = ((Future<Object>) f).get();
-			insNameList.add(s);
-			System.out.println(s);
-		}
-
-		System.out.print("Is Singleton:");
-		boolean IsSingleton = insNameList.stream().collect(Collectors.groupingBy(x -> x, Collectors.counting()))
-				.get(insNameList.get(0)) == tnum;
-		System.out.println(IsSingleton);
-		insNameList.clear();
-		insList.clear();
-		executor.shutdown();
-		executor.awaitTermination(5, TimeUnit.SECONDS);
 	}
 }
