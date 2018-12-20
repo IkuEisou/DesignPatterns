@@ -10,20 +10,26 @@ package singleton;
 public class Singleton_Classic {
 	private static Singleton_Classic singleton = null;
 
-	private Singleton_Classic(){
-		try{
+	private Singleton_Classic() {
+		try {
 			Thread.sleep(2 * 1000);
-		}catch (InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			System.out.println("Singleton_Classic is created!");
 		}
 	}
 
-	public static Singleton_Classic getInstance(){
+	public static Singleton_Classic getInstance() {
 		if (null == singleton) {
 			singleton = new Singleton_Classic();
 		}
+//		System.out.println(singleton);
 		return singleton;
 	}
+
+//	public void run() {
+//		// スレッドIDを出力する
+//		System.out.println(Thread.currentThread().getId());
+//	}
 }
