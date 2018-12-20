@@ -3,13 +3,16 @@
  */
 package client;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
+import singleton.Singleton_Classic;
 import singleton.Singleton_Holder;
 import singleton.Singleton_VDCL;
 
@@ -23,8 +26,8 @@ public class Client {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Chose the method:");
-		String[] methodArr = {"1: Singleton_Holder","2: Singleton_VDCL"};
+		System.out.println("Choose the method:");
+		String[] methodArr = { "1: Singleton_Holder", "2: Singleton_VDCL", "3: Classic" };
 
 		for (String method : methodArr) {
 			System.out.println(method);
@@ -42,7 +45,7 @@ public class Client {
 			task = Singleton_VDCL::getInstance;
 			break;
 		case 3:
-//			break;
+			task = Singleton_Classic::getInstance;
 		default:
 			break;
 		}
@@ -51,22 +54,27 @@ public class Client {
 			return;
 		}
 
-		ExecutorService executor = Executors.newFixedThreadPool(2);
-		Future<Object> f1 = executor.submit(task);
-		Future<Object> f2 = executor.submit(task);
+		System.out.println("Input the number of thread:");
+		int tnum = scanner.nextInt();
 
-		Object s1;
-		try {
-			s1 = f1.get();
-
-			Object s2 = f2.get();
-
-		System.out.println(s1);
-		System.out.println(s2);
-		System.out.println(s1 == s2);
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
+		ExecutorService executor = Executors.newFixedThreadPool(tnum);
+		ArrayList<Object> insList = new ArrayList<Object>();
+		for (int i = 0; i < tnum; i++) {
+			Future<Object> f = executor.submit(task);
+			Object s;
+			try {
+				s = f.get();
+				System.out.println(s);
+				insList.add(s);
+			} catch (InterruptedException | ExecutionException e) {
+				e.printStackTrace();
+			}
 		}
+
+		System.out.print("Is Singleton:");
+		boolean IsSingleton = insList.stream().collect(Collectors.groupingBy(x -> x, Collectors.counting()))
+				.get(insList.get(0)) == tnum;
+		System.out.println(IsSingleton);
 	}
 
 }
