@@ -8,7 +8,7 @@ package singleton;
  */
 public final class Singleton_Holder {
 	private static class SingletonHodler {
-		private static Singleton_Holder INSTANCE = new Singleton_Holder();
+		private static final Singleton_Holder INSTANCE = new Singleton_Holder();
 		private SingletonHodler() {}
 	}
 
