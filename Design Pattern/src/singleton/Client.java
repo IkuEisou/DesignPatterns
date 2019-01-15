@@ -1,7 +1,7 @@
 /**
  *
  */
-package client;
+package singleton;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,13 +12,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
-import singleton.Singleton_Classic;
-import singleton.Singleton_Double_Check_Lock;
-import singleton.Singleton_Holder;
-import singleton.Singleton_Synchronized;
-import singleton.Singleton_VDCL;
-import singleton.Singleton_static_final;
 
 /**
  * @author yuyc
