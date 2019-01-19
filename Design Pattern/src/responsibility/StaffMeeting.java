@@ -4,6 +4,7 @@ import responsibility.Question.Level;
 
 public class StaffMeeting extends Responsible {
 	private Level responsibleLevel = Level.HIGH;
+
 	public StaffMeeting(String responsiblePerson) {
 		super(responsiblePerson);
 	}
@@ -18,7 +19,7 @@ public class StaffMeeting extends Responsible {
 
 	@Override
 	protected void judge(Question question) {
-		System.out.println("StaffMeeting answered!");
+		System.out.println(getResponsiblePerson() + " answered!");
 	}
 
 }

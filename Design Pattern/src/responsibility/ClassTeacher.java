@@ -19,7 +19,7 @@ public class ClassTeacher extends Responsible {
 
 	@Override
 	protected void judge(Question question) {
-		System.out.println("ClassTeacher answered!");
+		System.out.println(getResponsiblePerson() + " answered!");
 
 	}
 
