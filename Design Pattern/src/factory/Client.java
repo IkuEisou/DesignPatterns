@@ -3,6 +3,8 @@
  */
 package factory;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * @author yuyc
  *
@@ -20,7 +22,8 @@ public class Client {
 			pd.swim();
 			pd = factory.createProduct("Fish");
 			pd.swim();
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
 	}
