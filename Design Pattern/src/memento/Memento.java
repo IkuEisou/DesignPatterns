@@ -3,7 +3,7 @@ package memento;
 public class Memento {
 	private double res;
 
-	Memento(double result){
+	Memento(double result) {
 		this.setRes(result);
 	}
 

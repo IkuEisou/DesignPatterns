@@ -5,11 +5,12 @@ package memento;
 
 /**
  * Originator
+ *
  * @author yuyc
  *
  */
 public class Calc {
-	private double res = 0;
+	private double res;
 
 	public double getRes() {
 		return res;
@@ -19,11 +20,11 @@ public class Calc {
 		this.res = memento.getRes();
 	}
 
-	public void plus(int oper){
+	public void plus(int oper) {
 		res += oper;
 	}
 
-	public Memento createMemeto(){
+	public Memento createMemeto(double res) {
 		return new Memento(res);
 	}
 }
