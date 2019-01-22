@@ -10,13 +10,14 @@ package proxy;
 public class Proxy implements ISubject {
 	private RealSubject real;
 
-
 	public Proxy(RealSubject real) {
 		super();
 		this.setReal(real);
 	}
 
-	/* (非 Javadoc)
+	/*
+	 * (非 Javadoc)
+	 *
 	 * @see proxy.ISubject#request1()
 	 */
 	@Override
@@ -25,7 +26,9 @@ public class Proxy implements ISubject {
 
 	}
 
-	/* (非 Javadoc)
+	/*
+	 * (非 Javadoc)
+	 *
 	 * @see proxy.ISubject#request2()
 	 */
 	@Override
@@ -34,15 +37,17 @@ public class Proxy implements ISubject {
 
 	}
 
-	/* (非 Javadoc)
+	/*
+	 * (非 Javadoc)
+	 *
 	 * @see proxy.ISubject#request3()
 	 */
 	@Override
 	public void request3() {
-        System.out.print("答えは「");
-        //代理には答えられないので、人に聞く
-        real.request3();
-        System.out.println("」となります。");
+		System.out.print("答えは「");
+		// 代理には答えられないので、人に聞く
+		real.request3();
+		System.out.println("」となります。");
 
 	}
 
