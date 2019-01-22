@@ -1,17 +1,17 @@
 package memento;
 
 public class Memento {
-	private double result;
+	private double res;
 
 	Memento(double result){
-		this.setResult(result);
+		this.setRes(result);
 	}
 
-	public double getResult() {
-		return result;
+	public double getRes() {
+		return res;
 	}
 
-	public void setResult(double result) {
-		this.result = result;
+	public void setRes(double result) {
+		this.res = result;
 	}
 }

@@ -3,10 +3,11 @@
  */
 package memento;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
+ * Caretaker
  * @author yuyc
  *
  */
@@ -16,22 +17,22 @@ public class Client {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Map<String, Memento> map = new HashMap<String, Memento>();
+		List<Memento> history = new ArrayList<Memento>();
 		Calc calc = new Calc();
 		for (int i = 1; i < 6; i++) {
 			calc.plus(i);
 		}
 		System.out.println(calc.getRes());
 
-		map.put("BeforeRes", calc.createMemeto());
+		history.add(calc.createMemeto());
 
 		Calc calc2 = new Calc();
-		calc2.setRes(map.get("BeforeRes").getResult());
+		calc2.setMemento(history.get(0));
 		for (int i = 6; i < 11; i++) {
 			calc2.plus(i);
 		}
 		System.out.println(calc2.getRes());
-		map.put("AfterRes", calc2.createMemeto());
+		history.add(calc2.createMemeto());
 	}
 
 }

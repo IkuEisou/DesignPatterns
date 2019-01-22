@@ -4,6 +4,7 @@
 package memento;
 
 /**
+ * Originator
  * @author yuyc
  *
  */
@@ -14,8 +15,8 @@ public class Calc {
 		return res;
 	}
 
-	public void setRes(double res) {
-		this.res = res;
+	public void setMemento(Memento memento) {
+		this.res = memento.getRes();
 	}
 
 	public void plus(int oper){
