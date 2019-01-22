@@ -13,8 +13,10 @@ public class Client {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-
+		ISubject robot = new Proxy(new RealSubject());
+		robot.request1();
+		robot.request2();
+		robot.request3();
 	}
 
 }
